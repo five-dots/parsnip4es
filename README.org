@@ -1,5 +1,5 @@
 #+STARTUP: showall indent
-#+PROPERTY: header-args:R :results output :session *R:parsnip4me* :exports both
+#+PROPERTY: header-args:R :results output :session *R:parsnip4me*
 
 * parsnip4me
 
@@ -15,7 +15,7 @@ devtools::install_github("five-dots/parsnip4me")
 
 Note that this package override =parsnip::fit.model_spec()= to accept =test_data=, mainly for an early stopping feature. 
 
-#+begin_src R
+#+begin_src R :exports both
 library(parsnip4me)
 #+end_src
 
@@ -30,7 +30,7 @@ For that reason, currently you cannot pass the =model_fit= object from this pack
 
 You can use "Early stopping" version of boosted tree model by =boost_tree_es().= =early_stopping_rounds= arg in =xgboost::xgb.train()= is set =(10 / eta)= by default.
 
-#+begin_src R
+#+begin_src R :exports both
 library(tidyverse)
 library(tidymodels)
 library(parsnip4me)
