@@ -1,0 +1,77 @@
+#+STARTUP: showall indent
+#+PROPERTY: header-args:R :results output :session *R:parsnip4me*
+
+* parsnip4me
+
+Simple extension for Emacs [[https://ess.r-project.org/][ESS]] to view R's data in a spreadsheet program. This small elisp is largely insipired by [[https://github.com/GioBo/ess-view][ess-view]], but rewrited for my purpose. Currently ~data.frame~ (inc. ~tibble~), ~matrix~ and ~vector~ are supported.
+
+** Installation
+
+=parsnip4me= is not available through CRAN. To install from github, use:
+
+#+begin_src R
+devtools::install_github("five-dots/parsnip4me")
+#+end_src
+
+Note that this package override =parsnip::fit.model_spec()= to accept =test_data=, mainly for an early stopping feature. 
+
+#+begin_src R
+library(parsnip4me)
+#+end_src
+
+#+RESULTS:
+: Registered S3 method overwritten by 'parsnip4me':
+:   method         from   
+:   fit.model_spec parsnip
+
+For that reason, currently you cannot pass the =model_fit= object from this package to the functions in ={tune}= package. (e.g =fit_resamples()=, =tune_grid()=)
+
+** Basic usage
+
+You can you *"Early stopping"* version of boosted tree mode by =boost_tree_es().= =early_stopping_rounds= arg in =xgboost::xgb.train()= is set =(10 / eta)= by default.
+
+#+begin_src R
+library(tidyverse)
+library(tidymodels)
+library(parsnip4me)
+
+rsplit <- initial_split(iris)
+train <- training(rsplit)
+test <- testing(rsplit)
+
+mod <- boost_tree_es(mode = "classification", learn_rate = 0.5) %>%
+  set_engine("xgboost", verbose = 1)
+
+fit <- fit(mod, Species ~ ., data = train, test_data = test)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+
+[1]	train-merror:0.026549	eval-merror:0.000000 
+Multiple eval metrics are present. Will use eval_merror for early stopping.
+Will train until eval_merror hasn't improved in 20 rounds.
+
+[2]	train-merror:0.017699	eval-merror:0.027027 
+[3]	train-merror:0.017699	eval-merror:0.027027 
+[4]	train-merror:0.017699	eval-merror:0.027027 
+[5]	train-merror:0.017699	eval-merror:0.027027 
+[6]	train-merror:0.017699	eval-merror:0.027027 
+[7]	train-merror:0.008850	eval-merror:0.027027 
+[8]	train-merror:0.008850	eval-merror:0.027027 
+[9]	train-merror:0.000000	eval-merror:0.027027 
+[10]	train-merror:0.000000	eval-merror:0.027027 
+[11]	train-merror:0.000000	eval-merror:0.027027 
+[12]	train-merror:0.000000	eval-merror:0.027027 
+[13]	train-merror:0.000000	eval-merror:0.027027 
+[14]	train-merror:0.000000	eval-merror:0.027027 
+[15]	train-merror:0.000000	eval-merror:0.027027 
+[16]	train-merror:0.000000	eval-merror:0.027027 
+[17]	train-merror:0.000000	eval-merror:0.027027 
+[18]	train-merror:0.000000	eval-merror:0.027027 
+[19]	train-merror:0.000000	eval-merror:0.027027 
+[20]	train-merror:0.000000	eval-merror:0.027027 
+[21]	train-merror:0.000000	eval-merror:0.027027 
+Stopping. Best iteration:
+[1]	train-merror:0.026549	eval-merror:0.000000
+#+end_example
