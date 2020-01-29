@@ -39,6 +39,27 @@ For that reason, currently this package has some limitations.
 | =boost_tree_es()= | "classification" | "xgboost" | "class", "prob", "raw" |
 |                 | "regression"     |           | "numeric", "raw"       |
 
+<table>
+  <tbody>
+    <tr>
+      <th align="left">model</th>
+      <th align="left">engine</th>
+      <th align="left">mode</th>
+      <th align="left">prediction</th>
+    </tr>
+    <tr>
+      <td rowspan="2" align="left"><code>boost_tree_es()</code><br/></td>
+      <td rowspan="2" align="left">"xgboost"<br/></td>
+      <td align="left" >"classification"</td>
+      <td align="left">"class", "prob", "raw"</td>
+    </tr>
+    <tr>
+      <td align="left">"regression"</td>
+      <td align="left">"numeric", "raw"</td>
+    </tr>
+  </tbody>
+</table>
+
 #+begin_src html :exports both
 <table>
   <tbody>
