@@ -1,30 +1,43 @@
 #+STARTUP: showall indent
-#+PROPERTY: header-args:R :results output :session *R:parsnip4me*
+#+PROPERTY: header-args:R :results output :session *R:parsnip4es*
 
-* parsnip4me
+* parsnip4es
 
-A collection of model specs and utilites mainly to support an early stopping feature to parsnip package.
+A collection of model specs and utilites to support an early stopping feature for [[https://github.com/tidymodels/parsnip][ =parsnip= ]] package.
 
 ** Installation
 
-=parsnip4me= is not available through CRAN. To install from github, use:
+=parsnip4es= is not available through CRAN. To install from github, use:
 
 #+begin_src R
-devtools::install_github("five-dots/parsnip4me")
+devtools::install_github("five-dots/parsnip4es")
 #+end_src
+
+** Notes
 
 Note that this package override =parsnip::fit.model_spec()= to accept =test_data=, mainly for an early stopping feature. 
 
 #+begin_src R :exports both
-library(parsnip4me)
+library(parsnip4es)
 #+end_src
 
 #+RESULTS:
-: Registered S3 method overwritten by 'parsnip4me':
+: Registered S3 method overwritten by 'parsnip4es':
 :   method         from   
 :   fit.model_spec parsnip
 
-For that reason, currently you cannot pass the =model_fit= object from this package to the functions in ={tune}= package. (e.g =fit_resamples()=, =tune_grid()=)
+For that reason, currently this package has some limitations.
+
+1. You cannot pass the =model_fit= object from this package to the functions in =tune= package. (e.g. =tune::fit_resamples()=, =tune::tune_grid()=)
+2. Early stopping version of =parsnip::fit_xy.model_spec()= is not implemented.
+3. Using in the production code is not recommended as there is no guarantee to follow all the changes in =parsnip= package.
+
+** Supported models
+
+| model           | mode             | engine    | prediction             |
+|-----------------+------------------+-----------+------------------------|
+| =boost_tree_es()= | "classification" | "xgboost" | "class", "prob", "raw" |
+|                 | "regression"     |           | "numeric", "raw"       |
 
 ** Basic usage
 
@@ -33,7 +46,7 @@ You can use "Early stopping" version of boosted tree model by =boost_tree_es().=
 #+begin_src R :exports both
 library(tidyverse)
 library(tidymodels)
-library(parsnip4me)
+library(parsnip4es)
 
 rsplit <- initial_split(iris)
 train <- training(rsplit)

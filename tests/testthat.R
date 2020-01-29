@@ -1,4 +1,4 @@
 library(testthat)
-library(parsnip4me)
+library(parsnip4es)
 
-test_check("parsnip4me")
+test_check("parsnip4es")

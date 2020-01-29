@@ -71,7 +71,7 @@
     value = list(
       interface = "matrix",
       protect   = c("x", "y", "test_x", "test_y"),
-      func      = c(pkg = "parsnip4me", fun = "xgb_train_es"),
+      func      = c(pkg = "parsnip4es", fun = "xgb_train_es"),
       defaults  = list(nthread = nthread, verbose = verbose)
     )
   )
@@ -84,7 +84,7 @@
     value = list(
       pre  = NULL,
       post = NULL,
-      func = c(pkg = "parsnip4me", fun = "xgb_pred_es"),
+      func = c(pkg = "parsnip4es", fun = "xgb_pred_es"),
       args = list(object = quote(object$fit), newdata = quote(new_data))
     )
   )
@@ -97,7 +97,7 @@
     value = list(
       pre  = NULL,
       post = NULL,
-      func = c(pkg = "parsnip4me", fun = "xgb_pred_es"),
+      func = c(pkg = "parsnip4es", fun = "xgb_pred_es"),
       args = list(object = quote(object$fit), newdata = quote(new_data))
     )
   )
@@ -114,7 +114,7 @@
     value = list(
       interface = "matrix",
       protect   = c("x", "y", "test_x", "test_y"),
-      func      = c(pkg = "parsnip4me", fun = "xgb_train_es"),
+      func      = c(pkg = "parsnip4es", fun = "xgb_train_es"),
       defaults  = list(nthread = nthread, verbose = verbose)
     )
   )
@@ -134,7 +134,7 @@
         }
         x
       },
-      func = c(pkg = "parsnip4me", fun = "xgb_pred_es"),
+      func = c(pkg = "parsnip4es", fun = "xgb_pred_es"),
       args = list(object = quote(object$fit), newdata = quote(new_data))
     )
   )
@@ -155,7 +155,7 @@
         }
         x
       },
-      func = c(pkg = "parsnip4me", fun = "xgb_pred_es"),
+      func = c(pkg = "parsnip4es", fun = "xgb_pred_es"),
       args = list(object = quote(object$fit), newdata = quote(new_data))
     )
     )
@@ -168,7 +168,7 @@
     value = list(
       pre = NULL,
       post = NULL,
-      func = c(pkg = "parsnip4me", fun = "xgb_pred_es"),
+      func = c(pkg = "parsnip4es", fun = "xgb_pred_es"),
       args = list(object = quote(object$fit), newdata = quote(new_data))
     )
   )
