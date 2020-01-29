@@ -39,7 +39,7 @@ For that reason, currently this package has some limitations.
 | =boost_tree_es()= | "classification" | "xgboost" | "class", "prob", "raw" |
 |                 | "regression"     |           | "numeric", "raw"       |
 
-#+begin_src html :exports results
+#+begin_src html :exports both
 <table>
   <th>
     <td align="left">model</td>
