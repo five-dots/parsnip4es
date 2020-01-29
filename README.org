@@ -39,6 +39,14 @@ For that reason, currently this package has some limitations.
 | =boost_tree_es()= | "classification" | "xgboost" | "class", "prob", "raw" |
 |                 | "regression"     |           | "numeric", "raw"       |
 
++--------------------+------------+------------------+------------------------+
+| model              | engine     | mode             | prediction             |
++--------------------+------------+------------------+------------------------+
+| =boost_tree_es()=    | "xgboost"  | "classification" | "class", "prob", "raw" |
+|                    |            +------------------+------------------------+
+|                    |            | "regression"     | "numeric", "raw"       |
++--------------------+------------+------------------+------------------------+
+
 ** Basic usage
 
 You can use "Early stopping" version of boosted tree model by =boost_tree_es().= =early_stopping_rounds= arg in =xgboost::xgb.train()= is set =(10 / eta)= by default.
