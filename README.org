@@ -39,13 +39,26 @@ For that reason, currently this package has some limitations.
 | =boost_tree_es()= | "classification" | "xgboost" | "class", "prob", "raw" |
 |                 | "regression"     |           | "numeric", "raw"       |
 
-+--------------------+------------+------------------+------------------------+
-| model              | engine     | mode             | prediction             |
-+--------------------+------------+------------------+------------------------+
-| =boost_tree_es()=    | "xgboost"  | "classification" | "class", "prob", "raw" |
-|                    |            +------------------+------------------------+
-|                    |            | "regression"     | "numeric", "raw"       |
-+--------------------+------------+------------------+------------------------+
+#+begin_export html
+<table>
+  <th>
+    <td align="left">model</td>
+    <td align="left">engine</td>
+    <td align="left">mode </td>
+    <td align="left">prediction </td>
+  </th>
+  <tr>
+    <td rowspan="2" align="left"><code>boost_tree_es()</code><br/></td>
+    <td rowspan="2" align="left">"xgboost"<br/> </td>
+    <td align="left" >"classification" </td>
+    <td align="left">"class", "prob", "raw" </td>
+  </tr>
+  <tr>
+    <td align="left">"regression" </td>
+    <td align="left">"numeric", "raw" </td>
+  </tr>
+</table>
+#+end_export
 
 ** Basic usage
 
