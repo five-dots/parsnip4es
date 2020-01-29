@@ -1,8 +1,4 @@
 
-rsplit <- rsample::initial_split(iris)
-train <- rsample::training(rsplit)
-test <- rsample::testing(rsplit)
-
 test_that("xgb_train_es", {
 
   x <- dplyr::select(train, -Species) %>% as.matrix()
@@ -29,9 +25,15 @@ test_that("boost_tree_es + xgboost for classification", {
   expect_equal(mod$engine, pkg)
 
   ## update spec
+
+  ## sloop::s3_dispatch(update(mod))
+
   mod <- update(mod, mtry = 2, min_n = 2, tree_depth = 5,
                 learn_rate = 0.1, loss_reduction = 0.01,
                 sample_size = 0.8)
+
+  ## sloop::s3_dispatch(translate(mod))
+
   trans <- translate(mod)
 
   params <- tibble::tibble(mtry = 1, min_n = 1, tree_depth = 6,
@@ -41,6 +43,9 @@ test_that("boost_tree_es + xgboost for classification", {
   trans <- translate(mod)
 
   ## fit
+
+  ## sloop::s3_dispatch(fit(mod))
+
   fit <- fit.model_spec(mod, Species ~ ., data = train, test_data = test)
   fit$fit$call
 
